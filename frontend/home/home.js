@@ -17,18 +17,24 @@ angular.module( 'sample.home', [
 
   $scope.jwt = store.get('jwt');
   $scope.decodedJwt = $scope.jwt && jwtHelper.decodeToken($scope.jwt);
-
+  $scope.isAdmin = $scope.decodedJwt.admin;
+  console.log($scope.decodedJwt.admin);
   $scope.getMyTasks = function() {
     // Just call the API as you'd do using $http
-    callApi('Secured', 'http://localhost:3001/api/protected/mytasks');
+    callApi('my task', 'http://localhost:3001/api/protected/mytasks');
   }
 
   $scope.getAllTasks = function() {
-    callApi('Secured', 'http://localhost:3001/api/protected/alltasks');
+    callApi('all task', 'http://localhost:3001/api/protected/alltasks');
   }
+
+  $scope.getAdminTasks = function(){
+    callApi('unassigned task', 'http://localhost:3001/api/protected/admintasks');
+  } 
 
   function callApi(type, url) {
     $scope.response = null;
+    $scope.error = null;
     $scope.api = type;
     $http({
       url: url,
@@ -38,7 +44,7 @@ angular.module( 'sample.home', [
       $scope.response = response.data;
     }, function(error) {
       console.log(error);
-      $scope.response = error.data;
+      $scope.error = error.data;
     });
   }
 

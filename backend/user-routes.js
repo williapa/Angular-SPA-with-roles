@@ -6,27 +6,10 @@ var express = require('express'),
 var app = module.exports = express.Router();
 
 // TODO: replace with an api call to our user db, 
-var users = [{
-  uid: 1,
-  username: 'atlasrutherford',
-  password: 'abc123',
-  admin: false
-},
-{
-  uid: 2,
-  username: 'bennybanana',
-  password: 'abc123',
-  admin: false
-},
-{
-  uid: 3,
-  username: 'alanalda',
-  password: 'admin',
-  admin: true,
-}];
+var users = require('./users.json');
 
 function createToken(user) {
-  return jwt.sign( _.omit(user, 'password'), config.secret, { expiresInMinutes: 60*5 });
+  return jwt.sign( _.omit(user, 'password'), config.secret, { expiresInMinutes: 60*1 });
 }
 
 app.post('/sessions/create', function(req, res) {

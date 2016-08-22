@@ -1,0 +1,19 @@
+[{
+  "uid": 1,
+  "username": "atlasrutherford",
+  "password": "abc123",
+  "admin": false
+},
+{
+  "uid": 2,
+  "username": "bennybanana",
+  "password": "abc123",
+  "admin": false
+},
+{
+  "uid": 3,
+  "username": "alanalda",
+  "password": "admin",
+  "admin": true
+}
+]
